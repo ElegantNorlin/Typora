@@ -1,9 +1,9 @@
 ---
 title: 谢凌曦Secret Blog
 date: 2021-3-28 16:05:00
-categories: 杂七杂八
+categories: 
 cover: /img/p13.jpg
-tags: 博客
+tags: 琐事杂记
 ---
 
 **声明：**此博文只是为了记录解谜过程，如果真的有人来访鄙人的博客，也希望大家也自己尝试去破解！

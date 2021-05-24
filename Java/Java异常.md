@@ -1,16 +1,16 @@
 ---
-
+title: Java异常
+date: 2021-3-28 16:05:00
+categories: 
+cover: /img/p14.jpg
+tags: Java
 ---
 
 ### 异常体系
 
-```mermaid
-graph TD
-b(Throwable)-->a(Error);
-b-->c(Exception);
-c-->d(RuntimeException);
-c-->e(非RuntimeException);
-```
+
+
+
 
 **Error:**严重问题，不需要处理。
 
