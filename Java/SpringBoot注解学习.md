@@ -20,6 +20,8 @@ tags: Java
 
 * @Enable*:作用就是@Import来收集并注册特定的场景相关的bean，并且加入到IOC容器。@EnableAutoConfiguration就是借助@Import来收集所有符合自动配置条件的bean定义，并加载到IOC容器中。
 
+* @Import:使用@Import导入的类会被Spring加载到IOC容器中。
+
 * SpringBoot中提供了很多Enable开头的注解，这些注解都是用于动态启用某些功能的。而其底层原理是使用@Import注解导入一些配置类，实现Bean的动态加载
 
 * @Autowired:将对象导入到类中，要求被注入的类需要被 Spring 容器管理比如：当我们在将一个类上标注@Component或者@Controller或@Service或@Repository注解之后，spring的组件扫描就会自动发现它，并且会将其初始化为spring应用上下文中的bean。
