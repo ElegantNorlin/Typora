@@ -18,7 +18,7 @@ tags: Java
 
 * @Conditional(ClassCondition.class)表示条件，如果括号中的条件为true则创建该注解对应的Bean，为false则不创建Bean。其中ClassCondition.class为我们编写的条件类，该条件类继承了Condition接口。该方法还可以封装成自己的注解来动态的判断我们指定的条件来加载Bean。
 
-* @Enable*:
+* @Enable*:作用就是@Import来收集并注册特定的场景相关的bean，并且加入到IOC容器。@EnableAutoConfiguration就是借助@Import来收集所有符合自动配置条件的bean定义，并加载到IOC容器中。
 
 * SpringBoot中提供了很多Enable开头的注解，这些注解都是用于动态启用某些功能的。而其底层原理是使用@Import注解导入一些配置类，实现Bean的动态加载
 
