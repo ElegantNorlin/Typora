@@ -49,7 +49,7 @@ tags: Java
 
 * @RequestParam:用于获取查询参数。
 
-* @RequestBody:用于读取 Request 请求（可能是 POST,PUT,DELETE,GET 请求）的 body 部分并且**Content-Type 为 application/json** 格式的数据，接收到数据之后会自动将数据绑定到 Java 对象上去。
+* @RequestBody:主要用来接收前端传递给后端的json字符串中的数据的(请求体中的数据的)；GET方式无请求体，所以使用@RequestBody接收数据时，前端不能使用GET方式提交数据，而是用POST方式进行提交。接收到数据之后会自动将数据绑定到 Java 对象上去。
 
 * @value:使用 @Value("${key}") 读取配置文件中的信息；
 
