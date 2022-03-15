@@ -28,7 +28,7 @@ selectPage
 selectMapsPage
 ```
 
-@TableId(type=IdType.***AUTO***)
+
 
 **BaseMapper接口是Mybatis Plus提供的单表操作接口，只能用来操作单表。**
 
@@ -48,7 +48,7 @@ public interface BaseMapper<T> {
     Integer insert(T entity);
  
     /**
-     * 根据 ID 删除
+     * 根据传入的 ID 进行删除操作
      * @param id
      * 主键ID
      * @return int
@@ -61,7 +61,7 @@ public interface BaseMapper<T> {
      * 表字段 map 对象
      * @return int
      */
-    Integer deleteByMap(@Param("cm") Map<String, Object> columnMap);
+    Integer deleteByMap(Map<String, Object> columnMap);
  
     /**
      * 根据 entity 条件，删除记录
@@ -69,7 +69,7 @@ public interface BaseMapper<T> {
      * 实体对象封装操作类（可以为 null）
      * @return int
      */
-    Integer delete(@Param("ew") Wrapper<T> wrapper);
+    Integer delete(Wrapper<T> wrapper);
  
     /**
      * 删除（根据ID 批量删除）
@@ -81,8 +81,7 @@ public interface BaseMapper<T> {
  
     /**
      * 根据 ID 修改
-     * @param entity
-     * 实体对象
+     * @param entity为设置了id的实体类，entity对象设置的参数为要更新的字段
      * @return int
      */
     Integer updateById(T entity);
@@ -95,7 +94,31 @@ public interface BaseMapper<T> {
      * 实体对象封装操作类（可以为 null）
      * @return
      */
-    Integer update(@Param("et") T entity, @Param("ew") Wrapper<T> wrapper);
+    Integer update(T entity, @Param("ew") Wrapper<T> wrapper);
+  	
+  
+  	# 以下两种更新方法达到的目的是相同的
+    @Test
+    public void testUpdate1(){
+      User user = new User();
+      user.setAge(20);
+      user.setPassword("8888888");
+      QueryWrapper<User> wrapper = new QueryWrapper<>();
+      //设置条件为user_name="zhangsan"
+      wrapper.eq("user_name",zhangsan);
+      
+      //根据条件（这里是用user_name字段作为条件）做更新
+      int result = this.userWrapper.update(user,wrapper);
+    }
+  
+  	@Test
+    public void testUpdate2(){
+      UpdateWrapper<User> wrapper = new UpdateWrapper<>();
+      wrapper.set("age",20).set("password",999999999).eq("user_name","zhangsan");
+
+      //我们不需要设置实体对象，所以第一个参数设置为null，wrapper包含了“更新数据”和“更新条件”
+      int result = wrapper.update(null,wrapper);
+    }
  
     /**
      * 根据 ID 查询
@@ -119,7 +142,7 @@ public interface BaseMapper<T> {
      * 表字段 map 对象
      * @return List<T>
      */
-    List<T> selectByMap(@Param("cm") Map<String, Object> columnMap);
+    List<T> selectByMap(Map<String, Object> columnMap);
  
     /**
      * 根据 entity 条件，查询一条记录
@@ -127,7 +150,7 @@ public interface BaseMapper<T> {
      * 实体对象
      * @return T
      */
-    T selectOne(@Param("ew") T entity);
+    T selectOne(T entity);
  
     /**
      * 根据 Wrapper 条件，查询总记录数
@@ -135,7 +158,7 @@ public interface BaseMapper<T> {
      * 实体对象
      * @return int
      */
-    Integer selectCount(@Param("ew") Wrapper<T> wrapper);
+    Integer selectCount(Wrapper<T> wrapper);
  
     /**
      * 根据 entity 条件，查询全部记录
@@ -143,7 +166,7 @@ public interface BaseMapper<T> {
      * 实体对象封装操作类（可以为 null）
      * @return List<T>
      */
-    List<T> selectList(@Param("ew") Wrapper<T> wrapper);
+    List<T> selectList(Wrapper<T> wrapper);
  
     /**
      * 根据 Wrapper 条件，查询全部记录
@@ -151,7 +174,7 @@ public interface BaseMapper<T> {
      * 实体对象封装操作类（可以为 null）
      * @return List<T>
      */
-    List<Map<String, Object>> selectMaps(@Param("ew") Wrapper<T> wrapper);
+    List<Map<String, Object>> selectMaps(Wrapper<T> wrapper);
  
     /**
      * 根据 Wrapper 条件，查询全部记录
@@ -159,7 +182,7 @@ public interface BaseMapper<T> {
      * 实体对象封装操作类（可以为 null）
      * @return List<Object>
      */
-    List<Object> selectObjs(@Param("ew") Wrapper<T> wrapper);
+    List<Object> selectObjs(Wrapper<T> wrapper);
  
     /** 
      * 用法：(new RowBounds(offset, limit), ew);
@@ -170,7 +193,7 @@ public interface BaseMapper<T> {
      * 实体对象封装操作类（可以为 null）
      * @return List<T>
      */
-    List<T> selectPage(RowBounds rowBounds, @Param("ew") Wrapper<T> wrapper);
+    List<T> selectPage(RowBounds rowBounds, Wrapper<T> wrapper);
  
     /** -- 不常用,
      * 根据 Wrapper 条件，查询全部记录（并翻页）
@@ -180,7 +203,7 @@ public interface BaseMapper<T> {
      * 实体对象封装操作类
      * @return List<Map<String, Object>>
      */
-    List<Map<String, Object>> selectMapsPage(RowBounds rowBounds, @Param("ew") Wrapper<T> wrapper);
+    List<Map<String, Object>> selectMapsPage(RowBounds rowBounds, Wrapper<T> wrapper);
 }
 ```
 
