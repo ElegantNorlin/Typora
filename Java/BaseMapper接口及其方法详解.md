@@ -8,6 +8,7 @@ tags: Java
 
 
 
+```
 insert
 deleteById
 deleteByMap
@@ -25,6 +26,11 @@ selectMaps
 selectObjs
 selectPage
 selectMapsPage
+```
+
+@TableId(type=IdType.***AUTO***)
+
+**BaseMapper接口是Mybatis Plus提供的单表操作接口，只能用来操作单表。**
 
 ```java
 /**
@@ -34,11 +40,9 @@ selectMapsPage
  * @Date 2016-01-23
  */
 public interface BaseMapper<T> {
- 
     /**
      * 插入一条记录
-     * @param entity
-     * 实体对象
+     * @param entity 该参数为实体对象T
      * @return int
      */
     Integer insert(T entity);
