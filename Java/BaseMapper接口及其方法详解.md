@@ -56,7 +56,7 @@ public interface BaseMapper<T> {
     Integer deleteById(Serializable id);
  
     /**
-     * 根据 columnMap 条件，删除记录
+     * 根据map集合中封装的为条件，比如map.put("user_name","zhangsan"),多个map条件是用“and”连接
      * @param columnMap
      * 表字段 map 对象
      * @return int
@@ -64,18 +64,19 @@ public interface BaseMapper<T> {
     Integer deleteByMap(Map<String, Object> columnMap);
  
     /**
-     * 根据 entity 条件，删除记录
-     * @param wrapper
-     * 实体对象封装操作类（可以为 null）
+     * @param wrapper一般是用QueryWrapper封装类来封装查询条件
+     		QueryWrapper有两种封装条件的方法：
+     			* 方法一：QueryWrapper.eq("user_name","zhangsan").eq("age",18)
+     			* 方法二（推荐）：User user = nnew user;
+     				user.setName("zhangsan");
+     				user.setAge(18);
+     				QueryWrapper wrapper = new QueryWrapper<>(user)
      * @return int
      */
     Integer delete(Wrapper<T> wrapper);
  
     /**
-     * 删除（根据ID 批量删除）
-     * @param idList
-     * 主键ID列表
-     * @return int
+     根据传入的ID列表（List集合）来批量删除数据
      */
     Integer deleteBatchIds(List<? extends Serializable> idList);
  
@@ -94,7 +95,7 @@ public interface BaseMapper<T> {
      * 实体对象封装操作类（可以为 null）
      * @return
      */
-    Integer update(T entity, @Param("ew") Wrapper<T> wrapper);
+    Integer update(T entity, Wrapper<T> wrapper);
   	
   
   	# 以下两种更新方法达到的目的是相同的
@@ -121,45 +122,34 @@ public interface BaseMapper<T> {
     }
  
     /**
-     * 根据 ID 查询
-     * @param id
-     * 主键ID
-     * @return T
+			根据传入的id值进行数据的查询
      */
     T selectById(Serializable id);
  
     /**
-     * 查询（根据ID 批量查询）
-     * @param idList
-     * 主键ID列表
-     * @return List<T>
+     * 根据包含ID值的List集合实现批量查询
+     * @return List<T>，其中T为数据封装的实体类
      */
     List<T> selectBatchIds(List<? extends Serializable> idList);
  
     /**
-     * 查询（根据 columnMap 条件）
-     * @param columnMap
-     * 表字段 map 对象
+  		根据map条件来查询数据，其是用方法与updateByMap相似
      * @return List<T>
      */
     List<T> selectByMap(Map<String, Object> columnMap);
  
     /**
-     * 根据 entity 条件，查询一条记录
-     * @param entity
-     * 实体对象
+     *查询单条数据并封装成对象：根据传入的条件对象查询，查询的数据超过一条时，会抛出异常。
      * @return T
      */
-    T selectOne(T entity);
+    T selectOne(Wrapper<T> Wrapper);
  
     /**
      * 根据 Wrapper 条件，查询总记录数
-     * @param wrapper
-     * 实体对象
      * @return int
      */
     Integer selectCount(Wrapper<T> wrapper);
- 
+ 		
     /**
      * 根据 entity 条件，查询全部记录
      * @param wrapper
@@ -183,7 +173,7 @@ public interface BaseMapper<T> {
      * @return List<Object>
      */
     List<Object> selectObjs(Wrapper<T> wrapper);
- 
+ 		
     /** 
      * 用法：(new RowBounds(offset, limit), ew);
      * 根据 entity 条件，查询全部记录（并翻页）
