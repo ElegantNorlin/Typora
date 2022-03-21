@@ -190,26 +190,361 @@ shutdown
 ### set
 
 * 添加元素
+
+  ```shell
+  sadd set_name member1 member2 ...
+  ```
+
 * 获取全部元素
+
+  ```shell
+  smembers set_name
+  ```
+
 * 删除元素
+
+  ```shell
+  srem set_name member1 member2 ...
+  ```
+
 * 获取集合数据总量
+
+  ```
+  scard set_name
+  ```
+
 * 判断集合中是否包含指定数据
-* 随机获取集合中指定数量的数据
-* 随机获取集合中的某个数据并将该数据移出集合
+
+  ```
+  sismember set_name member
+  ```
+
+* 随机获取集合中指定数量(count)的数据
+
+  ```
+  srandmember set_name count
+  ```
+
+* 随机获取集合中的count个数据并将该数据移出集合
+
+  ```
+  spop set_name count
+  ```
+
 * 求两个集合的交、并、差集
+
+  ```
+  sinter set1_name set2_name
+  sunion set1_name set2_name
+  sdiff set1_name set2_name
+  ```
+
 * 求两个集合的交、并、差集并存储到指定集合中
+
+  ```
+  sinterstore destination set1_name set2_name
+  sunionstore destination set1_name set2_name
+  sdiffstore destination set1_name set2_name
+  ```
+
 * 将指定数据从原始集合中移动到目标集合中
+
+  ```
+  smove source destination new_set_name
+  ```
 
 ### sorted_set
 
 * 添加数据
+
+  ```
+  zadd key score1 member1 score2 member2
+  ```
+
 * 获取全部数据
+
+  ```
+  zrange sorted_set_name start_index stop_index WITHSCORES
+  zrevrange sorted_set_name start_index stop_index WITHSCORES
+  ```
+
 * 删除数据
+
+  ```
+  zrem key member member ...
+  ```
+
 * 按条件获取数据
+
+  ```
+  zrangebyscore key min max WITHSCORES LIMIT
+  zrevrangebyscore key max min WITHSCORES
+  ```
+
 * 条件删除数据
+
+  ```
+  zremrangebyrank key start stop zremrangebyscore key min max
+  ```
+
 * 获取集合数据总量
+
+  ```
+  zcard key 
+  zcount key min max
+  ```
+
 * 集合交、并操作
+
+  ```
+  zinterstore destination numkeys key [key ...] 
+  zunionstore destination numkeys key [key ...]
+  ```
+
 * 获取数据对应的索引（排名）
+
+  ```
+  zrank key member zrevrank key member
+  ```
+
 * score值获取与修改
+
+  ```
+  zscore key member zincrby key increment member
+  ```
+
 * 获取当前系统时间
+
+  ```
+  time
+  ```
+
+### 集合的通用操作
+
+* 删除指定集合
+
+  ```
+  del name
+  ```
+
+* 查询指定的集合是否存在
+
+  ```
+  exists name
+  ```
+
+* 获取集合的类型
+
+  ```
+  type name
+  ```
+
+* 为指定的集合设置有效期
+
+  ```
+  expire key seconds 
+  pexpire key milliseconds 
+  expireat key timestamp 
+  pexpireat key milliseconds-timestamp
+  ```
+
+* 获取集合的有效时间
+
+  ```
+  ttl key 
+  pttl key
+  ```
+
+* 将状态为时效性的集合转换为永久性
+
+  ```
+  persist key
+  ```
+
+* 查询集合
+
+  ```
+  keys pattern
+  ```
+
+  查询规则
+
+  "*" : 匹配任意数量的任意符号
+
+  "?" : 配合一个任意符号
+
+  "[]" : 匹配一个指定符号
+
+  ```
+  keys * keys it* keys *heima
+  
+  keys ??heima keys user:?
+  
+  keys u[st]er:1
+  
+  查询所有 查询所有以it开头 查询所有以heima结尾 查询所有前面两个字符任意，后面以heima结尾 查询所有以user:开头，最后一个字符任意 查询所有以u开头，以er:1结尾，中间包含一个字母，s或t
+  ```
+
+* 重命名集合
+
+  ```
+  rename key newkey 
+  renamenx key newkey
+  ```
+
+* 对所有的集合进行排序
+
+  ```
+  sort
+  ```
+
+
+
+### 数据库通用操作
+
+**redis为每个服务提供有16个数据库，编号从0到15**
+
+* 切换数据库
+
+  ```
+  select index
+  ```
+
+* 其他操作
+
+  ```
+  quit 
+  ping 
+  echo message
+  ```
+
+* 数据移动
+
+  ```
+  move key db
+  ```
+
+* 数据清除
+
+  ```
+  dbsize 
+  flushdb 
+  flushall
+  ```
+
+
+
+### Redis持久化
+
+#### RDB
+
+* RDB启动--save：手动执行一次保存操作
+
+  ```
+  save
+  ```
+
+  - dbfilename dump.rdb  设置本地数据数据库文件名，默认为dump.rdb
+  - dir 设置存储.rdb文件的路径
+  - rdbcompression yes 设置存储值本地数据库时是否压缩数据，默认为yes，采用LZF压缩
+  - rdbchecksum yes 设置是否进行RDB文件格式校验，该校验过程在写文件和读文件过程均进行
+
+* RDB启动--bgsave:手动启动并后台保存，不是立即执行
+
+  ```
+  //启动
+  bgsave
+  //满足限定范围内key的变化数量达到指定数量即进行持久化second：监控时间范 changes：监控key的变化量
+  save second changes
+  ```
+
+* 优点
+
+  * RDB是一个紧凑压缩的二进制文件，存储效率较高
+  * RDB内部存储的是redis在某个时间点的数据快照，非常适合用于数据备份，全量复制等场景
+  * RDB恢复数据的速度要比AOF快很多
+  * 应用：服务器中每X小时执行bgsave备份，并将RDB文件拷贝到远程机器中，用于灾难恢复
+
+* 缺点
+
+  * RDB方式无论是执行指令还是利用配置，无法做到实时持久化，具有较大的可能性丢失数据
+  * bgsave指令每次运行要执行fork操作创建子进程，要牺牲掉一些性能
+  * Redis的众多版本中未进行RDB文件格式的版本统一，有可能出现各版本服务之间数据格式无法兼容现象
+
+#### AOF
+
+AOF（append only file）持久化：以独立日志的方式记录每次写命令，启动时在重新执行AOF文件中命令，以达到恢复数据的目的，与RDB相比可以简单描述为改记录数据为记录数据产生的过程AOF的主要作用是解决了数据持久化的实时性，目前已经是redis持久化的主流方式
+
+* AOF功能开启
+
+  ```
+  //是否开启AOF持久化功能，默认为不开启状态
+  appendonly yes|no
+  
+  //AOF写策略
+  appendfsync always|everysec|no
+  ```
+
+* AOF写数据的三种策略
+
+  * always
+    每次写入操作均同步到AOF文件中，数据零误差，性能较低，不建议使用
+  * everysec
+    每秒及那个缓冲区中的指令同步到AOF文件中，数据准确性较高，性能较高，建议使用，也是默认配置
+    在系统突然宕机的情况下丢失1秒内的数据
+  * no
+    有操作系统控制每次同步到AOF文件的周期，整体过程不可控
+
+* AOF重写
+
+  AOF重写
+  Redis可以在 AOF体积变得过大时，自动地在后台（Fork子进程）对 AOF进行重写。重写后的新 AOF文件包含了恢复当前数据集所需的最小命令集合。 所谓的“重写”其实是一个有歧义的词语， 实际上， AOF 重写并不需要对原有的 AOF 文件进行任何写入和读取， 它针对的是数据库中键的当前值。
+
+  Redis 不希望 AOF 重写造成服务器无法处理请求， 所以 Redis 决定将 AOF 重写程序放到（后台）子进 程里执行， 这样处理的最大好处是：
+
+  1、子进程进行 AOF 重写期间，主进程可以继续处理命令请求。
+  2、子进程带有主进程的数据副本，使用子进程而不是线程，可以在避免锁的情况下，保证数据的安全性。不过， 使用子进程也有一个问题需要解决： 因为子进程在进行 AOF 重写期间， 主进程还需要继续处理命令， 而新的命令可能对现有的数据进行修改， 这会让当前数据库的数据和重写后的 AOF 文件中的数据不一致。为了解决这个问题， Redis 增加了一个 AOF 重写缓存， 这个缓存在 fork 出子进程之后开始启用，Redis 主进程在接到新的写命令之后， 除了会将这个写命令的协议内容追加到现有的 AOF 文件之外， 还会追加到这个缓存中。
+
+  AOF重写方式
+
+  ```
+  //手动重写
+  bgrewriteaof
+  
+  //自动重写
+  auto-aof-rewrite-min-size size 
+  auto-aof-rewrite-percentage percentage
+  ```
+
+  
+
+
+
+### 事务
+
+* 开启事务
+
+  ```
+  multi
+  ```
+
+* 执行事务
+
+  ```
+  exec
+  ```
+
+**注意：加入事务的命令暂时进入到任务队列中，并没有立即执行，只有执行exec命令才开始执行**
+
+* 取消事务:终止当前事务的定义，发生在multi之后，exec之前
+
+  ```
+  discard
+  ```
+
+  
+
+
+
+
 
