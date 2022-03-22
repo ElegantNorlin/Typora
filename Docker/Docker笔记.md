@@ -388,7 +388,7 @@ docker run -id --name=c_redis -p 6379:6379 redis:5.0
 
 #### Docker镜像制作
 
-##### 容器转为镜像
+容器转为镜像
 
 ```
 //打包镜像
@@ -399,9 +399,7 @@ docker save -o 压缩文件名称 镜像名称:版本号
 docker load -i 压缩文件名称
 ```
 
-
-
-##### Dockerfile
+#### Dockerfile
 
 * dockerfile是一个文本文件
 * 包含了一条一条的指令
@@ -433,3 +431,136 @@ docker load -i 压缩文件名称
 | STOPSIGNAL  | 发送信号量到宿主机       | 该STOPSIGNAL指令设置将发送到容器的系统调用信号以退出。       |
 | SHELL       | 指定执行脚本的shell      | 指定RUN CMD ENTRYPOINT 执行命令的时候 使用的shell            |
 
+
+
+SpringBoot项目部署
+
+定义dockerfile，发布SpringBoot
+
+* 定义父镜像：FROM java:8 （表示在java:8镜像的基础上制作镜像）
+* 定义作者信息： MAINITAINER itheima <itheima@itcast.cn>
+* 将jar包添加到容器： ADD springboot.jar app.jar
+* 定义容器启动执行的命令： CMD jar -jar app.jar
+* 通过dockerfile构建镜像： docker build -f dockerfile文件路径 -t 镜像名称:版本
+
+
+
+### Docker Compose
+
+#### 安装Docker Compose
+
+```shell
+# Compose目前已经完全支持Linux、Mac OS和Windows，在我们安装Compose之前，需要先安装Docker。下面我们以编译好的二进制包方式安装在Linux系统中。 
+curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+# 设置文件可执行权限 
+chmod +x /usr/local/bin/docker-compose
+# 查看版本信息 
+docker-compose -version
+```
+
+#### 卸载Docker Compose
+
+```shell
+# 二进制包方式安装的，删除二进制文件即可
+rm /usr/local/bin/docker-compose
+```
+
+####  使用docker compose编排nginx+springboot项目
+
+1. 创建docker-compose目录
+
+```shell
+mkdir ~/docker-compose
+cd ~/docker-compose
+```
+
+2. 编写 docker-compose.yml 文件
+
+```shell
+version: '3'
+services:
+  nginx:
+   image: nginx
+   ports:
+    - 80:80
+   links:
+    - app
+   volumes:
+    - ./nginx/conf.d:/etc/nginx/conf.d
+  app:
+    image: app
+    expose:
+      - "8080"
+```
+
+3. 创建./nginx/conf.d目录
+
+```shell
+mkdir -p ./nginx/conf.d
+```
+
+
+
+4. 在./nginx/conf.d目录下 编写itheima.conf文件
+
+```shell
+server {
+    listen 80;
+    access_log off;
+
+    location / {
+        proxy_pass http://app:8080;
+    }
+   
+}
+```
+
+5. 在~/docker-compose 目录下 使用docker-compose 启动容器
+
+```shell
+docker-compose up
+```
+
+6. 测试访问
+
+```shell
+http://192.168.149.135/hello
+```
+
+### Docker 私有仓库
+
+#### 私有仓库搭建
+
+```shell
+# 1、拉取私有仓库镜像 
+docker pull registry
+# 2、启动私有仓库容器 
+docker run -id --name=registry -p 5000:5000 registry
+# 3、打开浏览器 输入地址http://私有仓库服务器ip:5000/v2/_catalog，看到{"repositories":[]} 表示私有仓库 搭建成功
+# 4、修改daemon.json   
+vim /etc/docker/daemon.json    
+# 在上述文件中添加一个key，保存退出。此步用于让 docker 信任私有仓库地址；注意将私有仓库服务器ip修改为自己私有仓库服务器真实ip 
+{"insecure-registries":["私有仓库服务器ip:5000"]} 
+# 5、重启docker 服务 
+systemctl restart docker
+docker start registry
+
+```
+
+#### 将镜像上传至私有仓库
+
+```shell
+# 1、标记镜像为私有仓库的镜像     
+docker tag centos:7 私有仓库服务器IP:5000/centos:7
+
+# 2、上传标记的镜像     
+docker push 私有仓库服务器IP:5000/centos:7
+
+```
+
+#### 从私有仓库拉取镜像 
+
+```shell
+#拉取镜像 
+docker pull 私有仓库服务器ip:5000/centos:7
+```
