@@ -69,3 +69,21 @@ Map:
 
 4.Map 里你可以拥有随意个 null 值但最多只能有一个 null 键。
 5.Map 接口最流行的几个实现类是 HashMap、LinkedHashMap、Hashtable 和 TreeMap。（HashMap、TreeMap最常用）
+
+
+
+### String引用类型的一些理解
+
+```java
+String s1 = "abc";
+String s2 = "abc";
+s1 == s2; # 结果为true
+
+
+String s3 = new String("abc");
+String s4 = new String("abc");
+s3 == s4 
+# 结果为false
+# 原因：new的对象都是存在于堆中的，s3和s4的创建时new了两个对象存储在堆内存中，这两个对象的地址并不相同，所以结果时false。
+```
+
