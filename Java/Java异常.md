@@ -1,10 +1,12 @@
 ---
 title: Java异常
 date: 2021-3-28 16:05:00
-categories: 
-cover: /img/p14.jpg
 tags: Java
+toc: true
+description: "本文介绍了homebrew软件卸载方法"
 ---
+
+
 
 ### 异常体系
 

@@ -1,9 +1,9 @@
 ---
-title:Maven子工程不能引入父工程定义的依赖
+title: Maven子工程不能引入父工程定义的依赖
 date: 2021-3-28 16:05:00
-categories: 
-cover: /img/p15.jpg
 tags: Java
+toc: true
+description: "记录一次Bug"
 ---
 
 

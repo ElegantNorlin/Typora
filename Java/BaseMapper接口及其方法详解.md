@@ -1,9 +1,9 @@
 ---
-title:BaseMapper接口及其方法详解
+title: BaseMapper接口及其方法详解
 date: 2021-3-28 16:05:00
-categories: 
-cover: /img/p15.jpg
 tags: Java
+toc: true
+description: "本文记录了BaseMapper接口方法的具体使用"
 ---
 
 

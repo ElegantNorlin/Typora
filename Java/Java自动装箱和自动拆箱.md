@@ -1,9 +1,9 @@
 ---
 title: Java自动装箱和自动拆箱
 date: 2021-3-28 16:05:00
-categories: 
-cover: /img/p15.jpg
 tags: Java
+toc: true
+description: "详细解读了Java的自动装箱和开箱机制"
 ---
 
 
