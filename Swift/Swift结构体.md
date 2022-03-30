@@ -1,5 +1,9 @@
 ---
-
+title: Swift结构体
+date: 2021-4-28 16:05:00
+tags: Swift
+toc: true
+description: "Swift允许你用两种方式创建自己的类型。其中一种最常见的叫做结构体，即 *struct*。Struct可以拥有自己的变量、常量以及函数，而你可以在任意时候创建和使用它们。"
 ---
 
 

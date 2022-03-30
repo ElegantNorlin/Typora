@@ -1,5 +1,9 @@
 ---
-
+title: Swift基础类型
+date: 2021-4-28 16:05:00
+tags: Swift
+toc: true
+description: "当你启动Xcode时，它会询问你想要做的事情，选择Get Started with a Playground。Playground是一个可以供你输入Swift代码并立即看到结果的沙盒环境。"
 ---
 
 

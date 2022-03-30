@@ -1,10 +1,10 @@
 ---
-
+title: GitHub加速教程之SwitchHosts
+date: 2021-4-13 22:23:00
+tags: Git
+toc: true
+description: "GitHub 加速方法"
 ---
-
-
-
-
 
 
 
@@ -25,6 +25,4 @@
 - URL 地址：https://cdn.jsdelivr.net/gh/ineo6/hosts/hosts 
 - 自动更新：1 小时
 
-这样就可以和仓库中最新的`hosts`保持同步。
-
-![switchhost-github.png](https://gitee.com/wanwanzh/imagebed/raw/master/pictures/XnHW5xCEzel36fA-20210409154729849.png) 
+这样就可以和仓库中最新的`hosts`保持同步。 

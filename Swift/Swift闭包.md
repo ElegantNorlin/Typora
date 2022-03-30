@@ -1,5 +1,9 @@
 ---
-
+title: Swift闭包
+date: 2021-4-28 16:05:00
+tags: Swift
+toc: true
+description: "OC有Block，C++有lambda表达式，swift则有闭包。"
 ---
 
 

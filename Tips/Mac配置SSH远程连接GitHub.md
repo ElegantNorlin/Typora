@@ -1,12 +1,10 @@
 ---
-
+title: Mac配置SSH远程连接GitHub
+date: 2021-4-13 22:23:00
+tags: mac
+toc: true
+description: "mac自带SSH，所以不需要安装SSH"
 ---
-
-
-
-
-
-
 
 ### 获取SSH远程连接密钥
 
@@ -50,38 +48,3 @@ ssh -T git@github.com
 Hi **********! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-### 克隆GitHub仓库到本地
-
-先进入要存放仓库的目录
-
-```shell
-cd yourdir
-```
-
-克隆仓库
-
-```shell
-git clone 仓库https链接
-```
-
-clone仓库可能过程不太顺利，最好开启终端代理，这样应该就畅通无阻了
-
-### 将仓库改动从工作区添加到缓存区
-
-```shell
-git add .
-```
-
-### 将缓存区内容推送到本地仓库
-
-```shell
-git commit -m "注释内容"
-```
-
-### 将本地仓库推送到GitHub
-
-```shell
-git push
-```
-
-如果本地只有一个分支，直接`git push`即可，否则`git push 分支名称`
