@@ -1,6 +1,6 @@
 ---
 title: Homebrew
-date: 2022-03-30 17:15:17
+date: 2022-04-01
 tags:
 - Homebrew 
 - mac
