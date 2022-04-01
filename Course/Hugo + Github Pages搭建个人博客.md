@@ -67,7 +67,7 @@ hugo serve -D
 
 接下来使用下面的命令在your_blog文件夹下生成public文件夹
 
-```
+```shell
 hugo --theme=your_theme_name --baseUrl="https://GitHub用户名.github.io/" --buildDrafts
 ```
 
@@ -94,3 +94,22 @@ git push
 然后打开浏览器输入`https://Github用户名.github.io`访问就能看到你的博客啦。
 
 我们现在的浏览器都比较智能，我们在访问博客的时候只需要输入`Github用户名.github.io`即可访问。
+
+### 6.更新文章重新部署
+
+当我们把新的文章添加到/content/posts中，需要使用下面的命令重新生成public中的内容
+
+```shell
+hugo --theme=your_theme_name --baseUrl="https://GitHub用户名.github.io/" --buildDrafts
+```
+
+然后进入public
+
+```shell
+cd public
+git add .
+git commit -m "commit describe"
+git remote add origin https://github.com/用户名/用户名.github.io.git
+git push -u origin master
+```
+
