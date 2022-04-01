@@ -195,7 +195,15 @@ Mac OS 是基于unix os开发的，和Linux是一个“祖宗”，Mac 和Linux�
 
 `command` + `shift` + `.`
 
+### 命令行显示、隐藏`隐藏文件`
 
+```shell
+# 隐藏命令
+defaults write com.apple.finder AppleShowAllFiles -boolean false ; killall Finder
+
+# 显示命令
+defaults write com.apple.finder AppleShowAllFiles -boolean true; killall Finder
+```
 
 ### Item2更改前缀名字
 

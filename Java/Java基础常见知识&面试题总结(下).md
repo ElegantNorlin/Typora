@@ -8,16 +8,6 @@ toc: true
 description: "Java基础知识&面试题总结"
 ---
 
-
-
----
-title: Java基础知识&面试题总结(下)
-category: Java
-tag:
-
-  - Java基础
----
-
 ## 泛型
 
 #### Java 泛型了解么？什么是类型擦除？介绍一下常用的通配符？
