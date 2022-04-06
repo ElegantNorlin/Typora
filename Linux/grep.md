@@ -1,6 +1,6 @@
 ---
 title: grep
-date: 2022-04-02
+date: 2022-04-06
 tags: 
 - Linux
 - Shell
