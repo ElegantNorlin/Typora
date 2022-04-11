@@ -1,16 +1,15 @@
 ---
-title: MySQL进阶笔记
+title: MySQL笔记
 date: 2021-3-28 16:05:00
-tags: Java
+tags: 
+- MySQL
 toc: true
-description: "MySQL进阶学习笔记"
+description: "MySQL学习笔记"
 ---
 
 
 
 # 基础篇
-
-## 通用语法及分类
 
 - DDL: 数据定义语言，用来定义数据库对象（数据库、表、字段）
 - DML: 数据操作语言，用来对数据库表中的数据进行增删改
@@ -833,8 +832,11 @@ SESSION 是会话级别，表示只针对当前会话有效，GLOBAL 表示对�
 
 MySQL体系结构：
 
-![结构图](https://dhc.pythonanywhere.com/media/editor/MySQL体系结构_20220315034329549927.png "结构图")
-![层级描述](https://dhc.pythonanywhere.com/media/editor/MySQL体系结构层级含义_20220315034359342837.png "层级描述")
+![](https://github.com/ElegantNorlin/Images/blob/main/images/MySQL%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84_20220315034329549927.png?raw=true) 
+
+ 
+
+![](https://github.com/ElegantNorlin/Images/blob/main/images/MySQL%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E5%B1%82%E7%BA%A7%E5%90%AB%E4%B9%89_20220315034359342837.png?raw=true) 
 
 存储引擎就是存储数据、建立索引、更新/查询数据等技术的实现方式。存储引擎是基于表而不是基于库的，所以存储引擎也可以被称为表引擎。
 默认存储引擎是InnoDB。
@@ -878,7 +880,9 @@ InnoDB 是一种兼顾高可靠性和高性能的通用存储引擎，在 MySQL 
 `ibd2sdi xxx.ibd`
 
 InnoDB 逻辑存储结构：
-![InnoDB逻辑存储结构](https://dhc.pythonanywhere.com/media/editor/逻辑存储结构_20220316030616590001.png "InnoDB逻辑存储结构")
+![](https://github.com/ElegantNorlin/Images/blob/main/images/%E9%80%BB%E8%BE%91%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84_20220316030616590001.png?raw=true) 
+
+
 
 ### MyISAM
 
@@ -968,16 +972,17 @@ Memory 引擎的表数据是存储在内存中的，受硬件问题、断电问�
 
 #### B-Tree
 
-![二叉树](https://dhc.pythonanywhere.com/media/editor/二叉树_20220316153214227108.png "二叉树")
+![](https://github.com/ElegantNorlin/Images/blob/main/images/%E4%BA%8C%E5%8F%89%E6%A0%91_20220316153214227108.png?raw=true) 
 
 二叉树的缺点可以用红黑树来解决：
-![红黑树](https://dhc.pythonanywhere.com/media/editor/红黑树_20220316163142686602.png "红黑树")
+
+![](https://github.com/ElegantNorlin/Images/blob/main/images/%E7%BA%A2%E9%BB%91%E6%A0%91_20220316163142686602.png?raw=true)
 红黑树也存在大数据量情况下，层级较深，检索速度慢的问题。
 
 为了解决上述问题，可以使用 B-Tree 结构。
 B-Tree (多路平衡查找树) 以一棵最大度数（max-degree，指一个节点的子节点个数）为5（5阶）的 b-tree 为例（每个节点最多存储4个key，5个指针）
 
-![B-Tree结构](https://dhc.pythonanywhere.com/media/editor/B-Tree结构_20220316163813441163.png "B-Tree结构")
+![](https://github.com/ElegantNorlin/Images/blob/main/images/B-Tree%E7%BB%93%E6%9E%84_20220316163813441163.png?raw=true) 
 
 > B-Tree 的数据插入过程动画参照：https://www.bilibili.com/video/BV1Kr4y1i7ru?p=68
 演示地址：https://www.cs.usfca.edu/~galles/visualization/BTree.html
@@ -986,7 +991,7 @@ B-Tree (多路平衡查找树) 以一棵最大度数（max-degree，指一个节
 
 结构图：
 
-![B+Tree结构图](https://dhc.pythonanywhere.com/media/editor/B+Tree结构图_20220316170700591277.png "B+Tree结构图")
+![](https://github.com/ElegantNorlin/Images/blob/main/images/B+Tree%E7%BB%93%E6%9E%84%E5%9B%BE_20220316170700591277.png?raw=true) 
 
 > 演示地址：https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html
 
@@ -997,14 +1002,16 @@ B-Tree (多路平衡查找树) 以一棵最大度数（max-degree，指一个节
 
 MySQL 索引数据结构对经典的 B+Tree 进行了优化。在原 B+Tree 的基础上，增加一个指向相邻叶子节点的链表指针，就形成了带有顺序指针的 B+Tree，提高区间访问的性能。
 
-![MySQL B+Tree 结构图](https://dhc.pythonanywhere.com/media/editor/结构图_20220316171730865611.png "MySQL B+Tree 结构图")
+![](https://github.com/ElegantNorlin/Images/blob/main/images/MySQL%20B+%20Tree%E7%BB%93%E6%9E%84%E5%9B%BE_20220316171730865611.png?raw=true) 
+
+
 
 #### Hash
 
 哈希索引就是采用一定的hash算法，将键值换算成新的hash值，映射到对应的槽位上，然后存储在hash表中。
 如果两个（或多个）键值，映射到一个相同的槽位上，他们就产生了hash冲突（也称为hash碰撞），可以通过链表来解决。
 
-![Hash索引原理图](https://dhc.pythonanywhere.com/media/editor/Hash索引原理图_20220317143226150679.png "Hash索引原理图")
+![](https://github.com/ElegantNorlin/Images/blob/main/images/Hash%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%9B%BE_20220317143226150679.png?raw=true) 
 
 特点：
 
@@ -1043,8 +1050,11 @@ MySQL 索引数据结构对经典的 B+Tree 进行了优化。在原 B+Tree 的�
 
 演示图：
 
-![大致原理](https://dhc.pythonanywhere.com/media/editor/原理图_20220318194454880073.png "大致原理")
-![演示图](https://dhc.pythonanywhere.com/media/editor/演示图_20220319215403721066.png "演示图")
+![](https://github.com/ElegantNorlin/Images/blob/main/images/%E5%8E%9F%E7%90%86%E5%9B%BE_20220318194454880073.png?raw=true) 
+
+
+
+![](https://github.com/ElegantNorlin/Images/blob/main/images/%E6%BC%94%E7%A4%BA%E5%9B%BE_20220319215403721066.png?raw=true) 
 
 聚集索引选取规则：
 
