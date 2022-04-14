@@ -81,3 +81,11 @@ tar是用来压缩文件、解压缩文件的命令
   > tar -jxvf pack.tar.bz2 /pack #解包解压.bz2格式的压缩包到pack文件夹
   >
   > tar -Jxvf pack.tar.xz /pack #解包解压.xz格式的压缩包到pack文件夹
+
+## 3.Linux内核
+
+```shell
+# 查看所有内核参数及其数值
+sysctl --a
+```
+
