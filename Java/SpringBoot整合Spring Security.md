@@ -278,9 +278,9 @@ public class SecurityUserService implements UserDetailsService {
 }
 ```
 
-在**配置类**中添加使用UserDetailService
+在**配置类**中添加使用SecurityUserService
 
-如果只有一个SecurityUserService实现类，这一步可以去掉，如果有多个的话需要配置
+如果只有一个UserDetailsService实现类，这一步可以去掉，如果有多个的话需要配置
 
 ```java
 @private SecurityUserService securityUserService;
