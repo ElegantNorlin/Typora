@@ -4,7 +4,7 @@ date: 2022-04-09
 tags: 
 - Java
 - SpringBoot
-- SpringBoot Security
+- Spring Security
 ---
 
 ### 1.导入依赖
