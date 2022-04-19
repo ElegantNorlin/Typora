@@ -10,6 +10,8 @@ tags:
 
 `grep`全称Global Regular Expression Print，表示全局正则表达式,是一个强大的文本搜索工具，采用正则匹配。
 
+可以理解为搜索关键词。
+
 #### 1.1grep命令格式
 
 ```shell

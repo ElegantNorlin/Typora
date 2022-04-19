@@ -94,3 +94,36 @@ tar是用来压缩文件、解压缩文件的命令
 sysctl --a
 ```
 
+## 4.find
+
+```shell
+find -name "*.jar"
+```
+
+## 5.which
+
+```shell
+# 查看java安装在哪个地方
+[root@node1 postgresql-11.5]# which java
+/usr/bin/java
+```
+
+## 6.jobs
+
+```shell
+# 查看当前shell环境中已经后台启动的作业
+jobs
+-l：显示进程号；
+-p：仅任务对应的显示进程号；
+-n：显示任务状态的变化；
+-r：仅输出运行状态（running）的任务；
+-s：仅输出停止状态（stoped）的任务。
+```
+
+## 7.netstat
+
+```shell
+# 查看网络进程占用的端口
+netstat -ntlp
+```
+
