@@ -36,6 +36,7 @@ free -m
 ```shell
 getconf LONG_BIT
 cat /etc/redhat-release
+cat /etc/system-release
 ```
 
 * 方法二：
