@@ -128,3 +128,33 @@ jobs
 netstat -ntlp
 ```
 
+## 8.wget
+
+wget是一款下载指定url资源的工具
+
+特点：
+
+1.支持断点续传
+
+2.wget支持ftp和http协议下载
+
+3.wget支持添加代理
+
+```shell
+# 安装wget工具
+yum install wget
+brew install wget
+```
+
+### 8.1直接下载
+
+```shell
+wget https://i0.hdslb.com/bfs/article/aa6eb6ae976ca5833c12076ad874f606d3f79eca.jpg@942w_287h_progressive.webp
+```
+
+### 8.2指定保存路径
+
+```shell
+wget -O ./aa.jpg https://i0.hdslb.com/bfs/article/aa6eb6ae976ca5833c12076ad874f606d3f79eca.jpg@942w_287h_progressive.webp
+```
+
