@@ -13,6 +13,10 @@ http://ftp.loongnix.cn/os/loongnix-server/1.7/os/mips64el/Packages/
 
 ### 1.下载rpm安装包
 
+**这里需要强调一下，并不是哪个安装包都于当前版本的中标麒麟适配，有的安装包能够安装成功，但是启动不起来容器，那么该怎么选择版本呢？**
+
+**我的方法比较笨，我是挨个去试的，这个版本安装了跑不起来就卸载去安装另一个版本，总有一个能成功，总比用不了好。**
+
 ```shell
 wget http://ftp.loongnix.cn/os/loongnix-server/1.7/os/mips64el/Packages/docker-ce-18.06.3.ce-0.lns7.mips64el.rpm
 ```
