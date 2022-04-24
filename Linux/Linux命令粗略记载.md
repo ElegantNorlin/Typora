@@ -5,9 +5,9 @@ tags:
 - Linux
 ---
 
-## 1.服务器版本相关命令
+### 1.服务器版本相关命令
 
-### 1.1查看CPU信息
+#### 1.1查看CPU信息
 
 ```shell
 cat /proc/cpuinfo
@@ -15,7 +15,7 @@ cat /proc/cpuinfo
 
 查询结果中，model name所对应的字段为CPU处理器名称
 
-### 1.2查看内存信息
+#### 1.2查看内存信息
 
 * 方法一：
 
@@ -29,7 +29,7 @@ cat /proc/meminfo
 free -m
 ```
 
-### 1.3查看CPU位数、系统版本
+#### 1.3查看CPU位数、系统版本
 
 * 方法一：
 
@@ -55,15 +55,13 @@ uname [option]
 >
 > -v：打印出操作系统的版本
 
-### 1.4查看网卡信息
+#### 1.4查看网卡信息
 
 ```shell
 ifconfig
 ```
 
-
-
-## 2.tar命令
+### 2.tar命令
 
 tar是用来压缩文件、解压缩文件的命令
 
@@ -83,7 +81,7 @@ tar是用来压缩文件、解压缩文件的命令
   >
   > tar -Jxvf pack.tar.xz /pack #解包解压.xz格式的压缩包到pack文件夹
 
-## 3.Linux内核
+### 3.Linux内核
 
 永久修改操作系统参数的方法
 
@@ -95,13 +93,13 @@ tar是用来压缩文件、解压缩文件的命令
 sysctl --a
 ```
 
-## 4.find
+### 4.find
 
 ```shell
 find -name "*.jar"
 ```
 
-## 5.which
+### 5.which
 
 ```shell
 # 查看java安装在哪个地方
@@ -109,7 +107,7 @@ find -name "*.jar"
 /usr/bin/java
 ```
 
-## 6.jobs
+### 6.jobs
 
 ```shell
 # 查看当前shell环境中已经后台启动的作业
@@ -121,14 +119,14 @@ jobs
 -s：仅输出停止状态（stoped）的任务。
 ```
 
-## 7.netstat
+### 7.netstat
 
 ```shell
 # 查看网络进程占用的端口
 netstat -ntlp
 ```
 
-## 8.wget
+### 8.wget
 
 wget是一款下载指定url资源的工具
 
@@ -146,15 +144,36 @@ yum install wget
 brew install wget
 ```
 
-### 8.1直接下载
+#### 8.1直接下载
 
 ```shell
 wget https://i0.hdslb.com/bfs/article/aa6eb6ae976ca5833c12076ad874f606d3f79eca.jpg@942w_287h_progressive.webp
 ```
 
-### 8.2指定保存路径
+#### 8.2指定保存路径
 
 ```shell
 wget -O ./aa.jpg https://i0.hdslb.com/bfs/article/aa6eb6ae976ca5833c12076ad874f606d3f79eca.jpg@942w_287h_progressive.webp
 ```
 
+### 9.yum
+
+#### 9.1查看yum源（仓库）
+
+```shell
+yum repolist
+```
+
+#### 9.2查看yum安装的依赖
+
+```shell
+yum list
+```
+
+#### 9.3yum安装依赖
+
+```shell
+yum install packagename
+```
+
+#### 9.4
