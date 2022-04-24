@@ -583,18 +583,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {}
 
 ##### 5.2.2第二种授权方式
 
-修改配置类
-
-```java
-		@Override
-    protected void configure(HttpSecurity http) throws Exception {       
-        http.authorizeRequests() //开启登录认证
-                .antMatchers("/login").permitAll()
-                //使用访问控制 自己实现authService处理，会接收两个参数 ，参数名称要对应起来
-                .anyRequest().access("@authService.auth(request,authentication)")
-    }
-```
-
 修改UserDetailService中 授权的实现，实现自定义的授权类，增加path属性
 
 ```java
@@ -765,6 +753,18 @@ public class AuthService {
       	//拦截
         return false;
     }
+}
+```
+
+修改配置类
+
+```java
+	@Override
+protected void configure(HttpSecurity http) throws Exception {       
+    http.authorizeRequests() //开启登录认证
+            .antMatchers("/login").permitAll()
+            //使用访问控制 自己实现authService处理，会接收两个参数 ，参数名称要对应起来
+            .anyRequest().access("@authService.auth(request,authentication)")
 }
 ```
 
