@@ -1,8 +1,7 @@
 ---
 title: 中标麒麟编译安装postgres
 date: 2022-04-25
-tags: 中标麒麟编译安装postgres
-
+tags: 
 - Linux
 - postgres
 ---

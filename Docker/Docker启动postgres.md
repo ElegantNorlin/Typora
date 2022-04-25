@@ -4,7 +4,6 @@ date: 2022-04-25
 tags: 
 - Docker
 - postgres
-toc: true
 ---
 
 
@@ -38,5 +37,11 @@ docker run --name postgres_demo -e POSTGRES_PASSWORD=password -p 54321:5432 -d p
 **注意：**
 
 * postgres镜像默认的用户名为postgres，
-
 * 登陆口令为创建容器是指定的值。
+
+### 3.进入postgres容器实例
+
+```shell
+sudo docker exec -it postgres13 psql -U postgres
+```
+
