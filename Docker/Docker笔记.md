@@ -1,6 +1,6 @@
 ---
 title: Docker笔记
-date: 2021-03-28 16:05:00
+date: 2021-03-28
 tags: 
 - Docker
 toc: true
@@ -181,7 +181,28 @@ docker -v
   docker run -it --name=c2 --vloume-from c3 centos:7 /bin/bash
   ```
   
-  
+
+* 查看所有数据卷
+
+  ```shell
+  docker volume ls
+  ```
+
+  打印结果
+
+  ```shell
+  [root@localhost ~]# docker volume ls
+  DRIVER              VOLUME NAME
+  local               2bd4fd0fa83bbf02ba9c11fee24bcbfac1bc42f5eecce396a36b441e46cf7202
+  ```
+
+* 删除数据卷
+
+  删除数据卷要谨慎，数据卷中是否有要保存的数据
+
+  ```shell
+  docker volume rm VOLUME_NAME
+  ```
 
 ### Docker部署MySQL
 
