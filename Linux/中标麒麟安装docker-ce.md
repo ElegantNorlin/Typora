@@ -5,6 +5,25 @@ tags:
 - Linux
 ---
 
+首先卸载以前的docker版本
+
+```shell
+yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+```
+
+
+
+**正式开始安装**
+
 
 
 贴一个龙芯（中标麒麟）开源社区安装包下载地址：
