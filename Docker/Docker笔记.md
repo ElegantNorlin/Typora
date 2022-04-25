@@ -133,7 +133,11 @@ docker -v
 * 删除容器：如果容器是运行状态则删除失败，需要停止容器才能删除
 
   ```
+  docker stop 容器名称
   docker rm 容器名称
+  
+  # 删除所有的容器
+  docker rm `docker ps -a -q`
   ```
 
 * 查看容器信息
