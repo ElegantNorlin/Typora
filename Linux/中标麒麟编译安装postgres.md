@@ -1,14 +1,10 @@
 ---
 title: 中标麒麟编译安装postgres
 date: 2022-04-25
-tags: 
+tags:
 - Linux
 - postgres
 ---
-
-
-
-
 
 ### 环境介绍
 
@@ -95,7 +91,31 @@ host   all      all       0.0.0.0/0         trust
 ps -ef | grep postgres
 ```
 
-### 说明
+### 修改linux系统postgres用户密码
+
+首先切换到root用户
+
+```shell
+su root
+```
+
+删除系统用户postgres密码
+
+```shell
+sudo -u postgres passwd
+```
+
+系统提示输入新密码
+
+```shell
+Enter new UNIX password:
+
+Retype new UNIX password:
+
+passwd: password updated successfully
+```
+
+### 修改数据库默认用户密码
 
 postgres数据库安装后会有一个默认用户postgres
 
