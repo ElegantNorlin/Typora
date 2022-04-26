@@ -76,9 +76,11 @@ pg_ctl stop
 ```shell
 cd  /usr/local/pgsql/data
 vim postgresql.conf
+# 设置所有人监听
 listen_addresses = '*'
 vim pg_hba.conf
-#IPv4 local connections:   
+# IPv4 local connections:   
+# 连接方式	连接的数据库	连接的用户	连接的主机IP	认证方式
 host   all      all       0.0.0.0/0         trust
 ```
 
