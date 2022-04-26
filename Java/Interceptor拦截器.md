@@ -94,6 +94,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 在MVC配置类的addInterceptors方法中配置拦截器（可以配置多个拦截器，形成拦截器链）
 
+在addInterceptors方法中**拦截器配置顺序**就是**拦截器的执行顺序**。
+
 ```java
 import com.mszlu.blog.handler.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,12 +111,19 @@ public class WebMVCConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+      	//第一个拦截器
         //添加拦截器，设置拦截路径
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/test")
                 .addPathPatterns("/comments/create/change")
                 .addPathPatterns("/articles/publish");
-    }
+      	
+      	//第二个拦截器
+        registry.addInterceptor(......)
+                  .addPathPatterns(......)
+                  .addPathPatterns(......)
+                  .addPathPatterns(......);
+      }
 
 }
 ```
