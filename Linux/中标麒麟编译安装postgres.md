@@ -1,16 +1,12 @@
 ---
-title: 中标麒麟编译安装postgres
+title: CentOS编译安装postgres11.5
 date: 2022-04-25
 tags:
 - Linux
 - postgres
 ---
 
-### 环境介绍
-
-* CPU：在Loongson-3B3000处理器
-* OS：NeoKylin Linux Server release 7.0 (loongson)
-* postgresQL source编译安装（非二进制）
+注意本文适用于中标麒麟操作系统编译安装postgres11.5
 
 ### 执行configure脚本
 
@@ -61,13 +57,24 @@ su postgres
 initdb -D /usr/local/pgsql/data/
 ```
 
-### 启动和停止服务
+### 启动postgres服务
 
 ```shell
 # 启动服务
 pg_ctl start
+```
 
-# 停止服务
+### 修改用户密码，第一次进入无需密码
+
+```sql
+psql -U postgres
+alter user postgres with password 'postgres'
+\q
+```
+
+### 停止postgres服务
+
+```shell
 pg_ctl stop
 ```
 
@@ -84,9 +91,9 @@ vim pg_hba.conf
 host   all      all       0.0.0.0/0         trust
 ```
 
-重启服务
+**到这里安装教程就结束了**
 
-### 相关命令
+### postgres相关命令
 
 ```shell
 # 查看运行的postgres进程
