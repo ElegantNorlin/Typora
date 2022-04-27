@@ -1,6 +1,6 @@
 ---
-title: @PathVariable 和 @RequestParam的区别
-date: 2022-04-26
+title: PathVariable注解 和 RequestParam注解的区别
+date: 2022-04-27
 tags: 
 - Java
 - SprinngBoot
