@@ -24,19 +24,13 @@ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
 ```
 
-### 4.改名为系统的仓库文件
-
-```shell
-mv CentOS7-Base-163.repo CentOS-Base.repo
-```
-
-### 5.清理缓存
+### 4.清理缓存
 
 ```shell
 yum clean all
 ```
 
-### 6.重新生成缓存
+### 5.重新生成缓存
 
 ```shell
 yum makecache
