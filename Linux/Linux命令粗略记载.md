@@ -176,4 +176,19 @@ yum list
 yum install packagename
 ```
 
-#### 9.4
+#### 9.4查看后台进程(PID)
+
+查看所有进程
+
+```shell
+ps -ef
+```
+
+查询进程名中包含字符串的进程
+
+```shell
+ps -ef | grep 查询的字符串
+```
+
+
+
