@@ -35,7 +35,9 @@ mkfs.ext4 /dev/vdb
 mount /dev/vdb /home
 ```
 
-查看是否挂载成功
+
+
+### 4.列出所有块设备查看是否挂载成功
 
 ```shell
 lsblk
