@@ -3,7 +3,7 @@ title: Interceptor拦截器
 date: 2022-04-26
 tags: 
 - Java
-- SprinngBoot
+- SpringBoot
 ---
 
 ### 1.Interceptor介绍
