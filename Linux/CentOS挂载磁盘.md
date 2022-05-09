@@ -44,3 +44,16 @@ lsblk
 ```
 
 ![](https://github.com/ElegantNorlin/Images/blob/main/images/lsblk.png?raw=true)
+
+### 5.系统启动自动挂载磁盘
+
+```shell
+vi /etc/fstab
+
+# 在fstab中加入以下信息
+/dev/vdb /home ext4 defaults 1 1
+```
+
+修改完fstab记得保存
+
+![](https://github.com/ElegantNorlin/Images/blob/main/images/:etc:fstab.png?raw=true)
