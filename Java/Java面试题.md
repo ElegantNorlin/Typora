@@ -12,7 +12,7 @@ description: "亲手整理的面试题"
 
 ## Java面试题
 
-### hashtable和hashmap的区别
+### 1.hashtable和hashmap的区别
 
 1 HashMap不是线程安全的
 
@@ -24,19 +24,19 @@ HashMap是Hashtable的轻量级实现（非线程安全的实现），他们都�
 
 HashMap允许将null作为一个entry的key或者value，而Hashtable不允许。 HashMap把Hashtable的contains方法去掉了，改成containsvalue和containsKey。因为contains方法容易让人引起误解。 Hashtable继承自Dictionary类，而HashMap是Java1.2引进的Map interface的一个实现。 最大的不同是，Hashtable的方法是Synchronize的，而HashMap不是，在多个线程访问Hashtable时，不需要自己为它的方法实现同步，而HashMap 就必须为之提供外同步。 Hashtable和HashMap采用的hash/rehash算法都大概一样，所以性能不会有很大的差别。
 
-### #{}和${}的区别
+### 2.#{}和${}的区别
 
 \#{} : 采用预编译方式,可以防止SQL注入
 ${}: 采用直接赋值方式,无法阻止SQL注入攻击
 
-### Java多线程实现的方式有四种
+### 3.Java多线程实现的方式有四种
 
 1.继承Thread类，重写run方法
 2.实现Runnable接口，重写run方法，实现Runnable接口的实现类的实例对象作为Thread构造函数的target
 3.通过Callable和FutureTask创建线程
 4.通过线程池创建线程
 
-### Wait和sleep的区别
+### 4.Wait和sleep的区别
 
 1、sleep是线程中的方法，但是wait是Object中的方法。
 
@@ -46,11 +46,11 @@ ${}: 采用直接赋值方式,无法阻止SQL注入攻击
 
 4、sleep不需要被唤醒（休眠之后推出阻塞），但是wait需要（不指定时间需要被别人中断）。
 
-### IOC思想
+### 5.IOC思想
 
 IOC()控制反转，通俗的将就是我们吧设计好的对象交给IOC容器，我们需要的时候就从IOC容器中获取对象，不需要自己new对象。控制反转的意思理解：传统的对象的控制权在我们写的代码中，控制反转就是IOC容器来控制对象的产生。
 
-### List，set，map有什么区别？
+### 6.List，set，map有什么区别？
 
 List：
 
@@ -84,7 +84,7 @@ Map:
 
 
 
-### String引用类型的一些理解
+### 7.String引用类型的一些理解
 
 ```java
 String s1 = "abc";
@@ -98,4 +98,30 @@ s3 == s4
 # 结果为false
 # 原因：new的对象都是存在于堆中的，s3和s4的创建时new了两个对象存储在堆内存中，这两个对象的地址并不相同，所以结果时false。
 ```
+
+### 8.朋友阿里实习一面试题
+
+#### 8.1首先自我介绍一下
+
+#### 8.2怎么解决订单下单的时候重复订单的问题
+
+[放一个回答](https://baijiahao.baidu.com/s?id=1701803664665621483)
+
+#### 8.3Maven如何排除包之间的冲突？
+
+[放一个回答](https://blog.csdn.net/qq_39809613/article/details/103837979)
+
+#### 8.4Threadlocal知识
+
+#### 8.5数据库中的delete、update什么时候去释放锁？
+
+#### 8.6说一些常用的设计模式：
+
+#### 8.7适配器模式有几种模式实现：3钟实现方式
+
+#### 8.8单例模式线程安全的实现方式
+
+#### 8.9单例模式实现线程安全的方式对什么加锁：对类加锁还是对对象加锁
+
+#### 8.10算法：leetcode136题
 
